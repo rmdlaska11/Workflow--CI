@@ -1,0 +1,14 @@
+digest: 1bb2f3d1
+name: dataset
+profile: '{"num_rows": 2376, "num_elements": 23760}'
+schema: '{"mlflow_colspec": [{"type": "double", "name": "Temperature", "required":
+  true}, {"type": "double", "name": "Humidity", "required": true}, {"type": "double",
+  "name": "Wind Speed", "required": true}, {"type": "double", "name": "Precipitation
+  (%)", "required": true}, {"type": "double", "name": "Cloud Cover", "required": true},
+  {"type": "double", "name": "Atmospheric Pressure", "required": true}, {"type": "double",
+  "name": "UV Index", "required": true}, {"type": "double", "name": "Season", "required":
+  true}, {"type": "double", "name": "Visibility (km)", "required": true}, {"type":
+  "double", "name": "Location", "required": true}]}'
+source: '{"tags": {"mlflow.user": "runner", "mlflow.source.name": "modelling.py",
+  "mlflow.source.type": "LOCAL", "mlflow.source.git.commit": "03ef2d743e79ca71cc41cfd8b1674aa055425689"}}'
+source_type: code
