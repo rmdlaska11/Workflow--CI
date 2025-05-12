@@ -1,4 +1,4 @@
-name: weather_type_mlflow
+name: weather-type-class
 
 conda_env: conda.yaml
 
