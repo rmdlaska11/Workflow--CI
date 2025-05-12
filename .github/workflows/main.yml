@@ -34,14 +34,10 @@ jobs:
           miniconda-version: "latest"
 
       - name: Create Conda environment
-        run: |
-          conda env create -f MLProject/conda.yaml
-          conda activate mlflow-env
+        run: conda env create -f MLProject/conda.yaml
 
-      # Jalankan MLflow project menggunakan Conda
       - name: Run MLflow project
-        run: |
-          mlflow run ./MLProject --env-manager=conda
+        run: conda run -n mlflow-env mlflow run ./MLProject --env-manager=conda
 
       # Dapatkan run_id terbaru dari MLflow
       - name: Get latest MLflow run_id
