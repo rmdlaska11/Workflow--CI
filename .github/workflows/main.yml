@@ -42,13 +42,17 @@ jobs:
         run: |
           mlflow run ./MLProject --env-manager=conda 
 
-
       - name: Get latest MLflow run_id
         shell: bash -l {0}
         run: |
-          RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
-          echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
-          echo "Latest run_id: $RUN_ID"
+          if [ -d "mlruns/0" ]; then
+            RUN_ID=$(ls -td mlruns/0/*/ | head -n 1 | cut -d'/' -f3)
+            echo "RUN_ID=$RUN_ID" >> $GITHUB_ENV
+            echo "Latest run_id: $RUN_ID"
+          else
+            echo "No MLflow runs found."
+            exit 1
+          fi
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
@@ -59,6 +63,8 @@ jobs:
       - name: Build Docker Image
         shell: bash -l {0}
         run: |
+          echo "Checking model URI..."
+          ls -l "mlruns/${{ env.RUN_ID }}/model"
           mlflow models build-docker --model-uri "runs:/${{ env.RUN_ID }}/model" --name weather-model
 
       - name: Tag Docker Image
