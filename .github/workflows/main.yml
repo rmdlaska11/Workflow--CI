@@ -37,7 +37,7 @@ jobs:
         run: conda env create -f MLProject/conda.yaml
 
       - name: Run MLflow project
-        run: conda run -n mlflow-env mlflow run ./MLProject --env-manager=conda
+        run: conda run -n mlflow-env mlflow run ./MLProject --env-manager=conda -P experiment_name="Weather Type"
 
       # Dapatkan run_id terbaru dari MLflow
       - name: Get latest MLflow run_id
