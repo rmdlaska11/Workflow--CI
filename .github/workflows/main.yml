@@ -40,7 +40,7 @@ jobs:
       - name: Run MLflow Project
         shell: bash -l {0}
         run: |
-          mlflow run ./MLProject --env-manager=conda -P experiment_name="Weather Type"
+          mlflow run ./MLProject --env-manager=conda 
 
 
       - name: Get latest MLflow run_id
