@@ -64,8 +64,9 @@ jobs:
         shell: bash -l {0}
         run: |
           echo "Checking model URI..."
-          ls -l "mlruns/${{ env.RUN_ID }}/model"
-          mlflow models build-docker --model-uri "runs:/${{ env.RUN_ID }}/model" --name weather-model
+          echo "Using run ID: $RUN_ID"
+          ls -l "mlruns/0/$RUN_ID/artifacts/model"
+          mlflow models build-docker --model-uri "mlruns:/0/$RUN_ID/model" --name weather-model
 
       - name: Tag Docker Image
         run: docker tag weather-model ${{ secrets.DOCKER_HUB_USERNAME }}/weather-model:latest
