@@ -73,3 +73,20 @@ jobs:
 
       - name: Push Docker Image
         run: docker push ${{ secrets.DOCKER_HUB_USERNAME }}/weather-model:latest
+
+      - name: Move MLflow artifacts to MLProject folder
+        shell: bash -l {0}
+        run: |
+          mkdir -p MLProject/mlruns
+          cp -r mlruns/0 "MLProject/mlruns/"
+
+      - name: Push MLflow artifacts to GitHub
+        shell: bash -l {0}
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add MLProject/mlruns/
+          git commit -m "Add MLflow artifacts for run $RUN_ID" || echo "No changes to commit"
+          git push origin main
+
+
