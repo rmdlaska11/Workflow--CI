@@ -7,7 +7,6 @@ from mlflow.models.signature import infer_signature
 import argparse
 
 def main(n_estimators, max_depth, dataset):
-    mlflow.set_experiment("Weather Type")
     mlflow.sklearn.autolog()
 
     # Load data
